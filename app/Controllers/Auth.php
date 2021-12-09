@@ -4,6 +4,10 @@ namespace App\Controllers;
 
 class Auth extends BaseController
 {
+    public function __construct(){
+        helper(['url','form']);
+    }
+    
     public function index()
     {
        return view('auth/login');
@@ -17,13 +21,16 @@ class Auth extends BaseController
         $validation = $this->validate([
             'lastname'=>'required',
             'firstname'=>'required',
-            'email'=>'required|valid_email|is_unique[users.emai]',
+            'email'=>'required|valid_email',
             'password'=>'required|min_lenght[5]|max_lenght[12]',
             'cpassword'=>'required|min_lenght[5]|max_lenght[12]|matches[password]',
-
-
-
         ]);
-    }
 
+        if(!$validation){
+            return view('auth/register',['validation'=>$this->validator]);
+        }else{
+            echo 'Formulaire valide';
+        }
+
+    }
 }
