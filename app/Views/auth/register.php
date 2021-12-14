@@ -15,6 +15,13 @@
             <h4>Créer un compte</h4><hr>
             <form action="<?= base_url('auth/save'); ?>" method="post">
             <?= csrf_field(); ?>
+            <?php if(!empty(session()->getFlashdata('fail'))): ?>
+                <div class="alert alert-danger"><?=session()->getFlashdata('fail'); ?></div>
+                <?php endif ?>
+
+                <?php if(!empty(session()->getFlashdata('success'))): ?>
+                <div class="alert alert-success"><?=session()->getFlashdata('success'); ?></div>
+                <?php endif ?>
             <div class="form-group">
                     <label for="">Nom</label>
                     <input type="text" class="form-control" name="firstname" placeholder="Entrez votre nom" value="<?= set_value('firstname'); ?>">

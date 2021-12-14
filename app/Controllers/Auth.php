@@ -87,9 +87,10 @@ class Auth extends BaseController
                return redirect()->back()->with('fail','erreur d enregistrement');
             //    return redirect()->to('register')->with('fail','error');
            }else{
-            return redirect()->to('auth/register')->with('succes','enregistrement ok');
+            return redirect()->to('auth/register')->with('success','enregistrement ok');
            }
         }
 
     }
 }
+
