@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use CodeIgniter\Database\Query;
+use App\Libraries\Hash;
 
 class Auth extends BaseController
 {
@@ -78,7 +79,7 @@ class Auth extends BaseController
                'lastname'=>$lastname,
                'firstname'=>$firstname,
                'email'=>$email,
-               'password'=>$password,
+               'password'=>Hash::make($password),
 
            ];
            $userModel = new \App\Models\UsersModel();
