@@ -35,7 +35,7 @@ class Database extends Config
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => 'smb',
+        'database' => 'share_my_book',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,

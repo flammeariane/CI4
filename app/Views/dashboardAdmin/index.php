@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row">
 
-            <h4> bienvenue sur le dashboard utilisateur </h4>
+            <h4> bienvenue sur le dashboard ADMIN </h4>
             <hr>
             <table class="table table-hover">
                 <thead>
@@ -31,7 +31,6 @@
                         <td><?= $userInfo['firstname']; ?></td>
                         <td><?= $userInfo['lastname']; ?></td>
                         <td><?= $userInfo['email']; ?></td>
-                        <td><a href="<?= site_url('auth/logout'); ?>">Déconnexion</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -42,7 +41,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
+    <script src="<?= base_url('assets/js/bootstrap.min.js'); ?>"></script>
 
 </body>
 

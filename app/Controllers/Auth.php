@@ -24,13 +24,6 @@ class Auth extends BaseController
 
     public function save()
     {
-        // $validation = $this->validate([
-        //     'lastname'=>'required',
-        //     'firstname'=>'required',
-        //     'email'=>'required|valid_email',
-        //     'password'=>'required|min_lenght[5]|max_lenght[12]',
-        //     'cpassword'=>'required|min_lenght[5]|max_lenght[12]|matches[password]',
-        // ]);
 
         $validation = $this->validate([
             'lastname' => [
@@ -42,11 +35,11 @@ class Auth extends BaseController
             'firstname' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Nom de famille requis'
+                    'required' => 'Prénom requis'
                 ]
             ],
             'email' => [
-                'rules' => 'required|valid_email',
+                'rules' => 'required|valid_email|is_unique[users.email]',
                 'errors' => [
                     'required' => 'Email requis',
                     'valid_email' => 'vous devez indiquez un email valide'
@@ -91,7 +84,10 @@ class Auth extends BaseController
                 return redirect()->back()->with('fail', 'erreur d enregistrement');
                 //    return redirect()->to('register')->with('fail','error');
             } else {
-                return redirect()->to('auth/register')->with('success', 'enregistrement ok');
+                // return redirect()->to('auth/register')->with('success', 'enregistrement ok');
+                $last_id = $usersModel->insertID();
+                session()->set('loggedUser', $last_id);
+                return redirect()->to('/dashboardUser');
             }
         }
     }
@@ -120,6 +116,7 @@ class Auth extends BaseController
         ]);
 
         // verification de la correspondance des donnée introduite dans la DB
+
         if (!$validation) {
             return view('auth/login', ['validation' => $this->validator]);
         } else {
@@ -129,7 +126,8 @@ class Auth extends BaseController
             $user_info = $usersModel->where('email', $email)->first();
             $check_password = Hash::verify_hash($password, $user_info['password']);
 
-            if (!$check_password) {
+
+            if ($check_password) {
                 session()->setFlashdata('fail', 'incorrect password');
                 return redirect()->to('/auth')->withInput();
             } else {
@@ -139,6 +137,14 @@ class Auth extends BaseController
                 return redirect()->to('/dashboardUser');
                 //TODO separer user&admin pour la redirection dashboard
             }
+        }
+    }
+
+    function logout()
+    {
+        if (session()->has('loggedUser')) {
+            session()->remove('loggedUser');
+            return redirect()->to('/auth?access=out')->with('fail', 'vous êtes déconnecté');
         }
     }
 }
