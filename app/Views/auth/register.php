@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css'); ?>">
+    <?php include 'assets/css.php'; ?>
 
 
 </head>
@@ -101,9 +101,7 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
+    <?php include 'assets/js.php'; ?>
 
 
 </body>

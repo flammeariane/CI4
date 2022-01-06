@@ -31,6 +31,7 @@
                         <td><?= $userInfo['firstname']; ?></td>
                         <td><?= $userInfo['lastname']; ?></td>
                         <td><?= $userInfo['email']; ?></td>
+                        <td><?= $userInfo['admin']; ?></td>
                         <td><a href="<?= site_url('auth/logout'); ?>">Déconnexion</a></td>
                     </tr>
                 </tbody>

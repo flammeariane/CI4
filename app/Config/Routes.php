@@ -17,7 +17,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('Auth');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -31,12 +31,12 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Auth::register');
 
 $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     //declaration des route protéger la par le filter d authentification
     $routes->get('/dashboardUser', 'dashboardUser::index');
-    $routes->get('/dashboardAdmin', 'dashboardAdmin::index');
+    $routes->get('/dashboardAdmin', 'dashboardAdminController::index');
 });
 
 $routes->group('', ['filter' => 'AlreadyLoggedFilter'], function ($routes) {
