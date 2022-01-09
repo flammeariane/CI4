@@ -134,7 +134,7 @@ class Auth extends BaseController
                 //store info du user si loggin reussi
                 $user_id = $user_info['id'];
                 session()->set('loggedUser', $user_id);
-                return redirect()->to('/dashboardUser');
+                return redirect()->to('/dashboardAdmin');
                 //TODO separer user&admin pour la redirection dashboard
             }
         }

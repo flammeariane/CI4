@@ -10,10 +10,30 @@ class DashboardAdminController extends BaseController
         $usersModel = new \App\Models\UsersModel();
         $loggedUserId = session()->get('loggedUser');
         $userInfo = $usersModel->find($loggedUserId);
+
         $data = [
             'title' => 'DashboardAdmin',
-            'userInfo' => $userInfo
+            'userInfo' => $userInfo,
+            'listUsers' => $usersModel->getAllUsers(),
         ];
+        //  var_dump($data['listUsers']);
         return view('dashboardAdmin/index', $data);
+    }
+
+    public function getUserList()
+    {
+    }
+    public function updateUser()
+    {
+        $usersModel = new \App\Models\UsersModel();
+
+        return $this->response->redirect(base_url('dashboardAdmin'));
+    }
+
+    public function deleteUser($id)
+    {
+        $usersModel = new \App\Models\UsersModel();
+        $usersModel->delete($id);
+        return $this->response->redirect(base_url('dashboardAdmin'));
     }
 }
