@@ -46,8 +46,8 @@ class DashboardAdminController extends BaseController
 
     public function deleteUser($id)
     {
-        $usersModel = new \App\Models\UsersModel();
-        $usersModel->delete($id);
-        return $this->response->redirect(base_url('dashboardAdmin'));
+        $user = new \App\Models\UsersModel();
+        $user->delete($id);
+        return redirect()->to(base_url('dashboardAdmin'))->with('status', 'utilisateur supprimer avec success');
     }
 }

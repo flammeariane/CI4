@@ -64,7 +64,10 @@
                                         <td><?= $listUsers['admin'] ?></td>
                                         <td>
                                             <a href="<?= base_url('dashboardAdmin/editUser/' . $listUsers['id']) ?>" class="btn btn-success btn-sm">Edit</a>
-                                            <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                            <form action="<?= base_url('dashboardAdmin/deleteUser/' . $listUsers['id']) ?>" method="POST">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
