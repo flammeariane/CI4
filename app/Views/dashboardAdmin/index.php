@@ -30,6 +30,9 @@
 
         <div class="row">
             <div class="col-md-12 mt-5">
+                <?php if ((session()->getFlashdata('status'))) : ?>
+                    <div class="alert alert-success"><?= session()->getFlashdata('status'); ?></div>
+                <?php endif ?>
                 <div class="card">
                     <div class="card-header">
                         <h4>
@@ -60,7 +63,7 @@
                                         <td><?= $listUsers['status'] ?></td>
                                         <td><?= $listUsers['admin'] ?></td>
                                         <td>
-                                            <a href="" class="btn btn-success btn-sm">Edit</a>
+                                            <a href="<?= base_url('dashboardAdmin/editUser/' . $listUsers['id']) ?>" class="btn btn-success btn-sm">Edit</a>
                                             <a href="" class="btn btn-danger btn-sm">Delete</a>
                                         </td>
                                     </tr>
