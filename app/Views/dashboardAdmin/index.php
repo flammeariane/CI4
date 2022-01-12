@@ -15,8 +15,9 @@
 
 <body>
 
+    <?php include 'assets/include/navbar.php'; ?>
     <div class="container">
-        <?= $this->include('layouts/nav'); ?>
+
 
 
         <div class="row">
