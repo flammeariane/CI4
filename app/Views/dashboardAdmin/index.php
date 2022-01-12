@@ -7,10 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Custom styles for this template -->
-    <link href="assets/css/dashboard.css" rel="stylesheet">
     <title>dashboard administrateur</title>
+    <?php include 'assets/css.php'; ?>
 </head>
 
 <body>
@@ -20,21 +19,28 @@
 
 
 
-        <div class="row">
-
-            <h4> bienvenue sur le dashboard ADMIN </h4>
+        <div class="row mt-3">
             <hr>
+            <div class="col-6">
+                <h4> bienvenue sur le dashboard ADMIN </h4>
+            </div>
 
-            <td><?= $userInfo['firstname']; ?></td>
-            <td><?= $userInfo['lastname']; ?></td>
-            <td><?= $userInfo['email']; ?></td>
-            <td><?= $userInfo['admin']; ?></td>
+            <div class="col-3 offset-3">
+                <i class="bi bi-people"> <?= $userInfo['lastname']; ?></i> <a href="<?= site_url('auth/logout'); ?>">Déconnexion</a>
+            </div>
 
-            <td><a href="<?= site_url('auth/logout'); ?>">Déconnexion</a></td>
+
+
+
+
+
+
+
         </div>
         <hr>
 
         <div class="row">
+
             <div class="col-md-12 mt-5">
                 <?php if ((session()->getFlashdata('status'))) : ?>
                     <div class="alert alert-success"><?= session()->getFlashdata('status'); ?></div>
@@ -46,6 +52,7 @@
                         </h4>
                     </div>
                     <div class="card-body">
+
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -72,7 +79,8 @@
                                             <a href="<?= base_url('dashboardAdmin/editUser/' . $listUsers['id']) ?>" class="btn btn-success btn-sm">Edit</a>
                                             <form action="<?= base_url('dashboardAdmin/deleteUser/' . $listUsers['id']) ?>" method="POST">
                                                 <input type="hidden" name="_method" value="DELETE">
-                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-x"></i></button>
+
                                             </form>
                                         </td>
                                     </tr>
