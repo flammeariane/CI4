@@ -8,7 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <!-- Custom styles for this template -->
-    <title>dashboard administrateur</title>
+    <title>dashboard admin</title>
     <?php include 'assets/css.php'; ?>
 </head>
 
@@ -22,18 +22,12 @@
         <div class="row mt-3">
             <hr>
             <div class="col-6">
-                <h4> bienvenue sur le dashboard ADMIN </h4>
+                <h4> bienvenue sur le dashboard administrateur </h4>
             </div>
 
             <div class="col-3 offset-3">
                 <i class="bi bi-people"> <?= $userInfo['lastname']; ?></i> <a href="<?= site_url('auth/logout'); ?>">Déconnexion</a>
             </div>
-
-
-
-
-
-
 
 
         </div>

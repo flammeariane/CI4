@@ -1,14 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <?php include 'assets/css.php'; ?>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+    <title>création compte</title>
+    <!-- check pourquoi le php iclude ne fonctionne pas -->
+    <link rel="stylesheet" href="CI4../../../assets/css/bootstrap.min.css">
 </head>
 
 <body class=" bg-gradient-primary">
@@ -97,9 +96,6 @@
             </div>
         </div>
     </div>
-
-
-
 
     <?php include 'assets/js.php'; ?>
 

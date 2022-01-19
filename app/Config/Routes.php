@@ -35,7 +35,7 @@ $routes->get('/', 'Auth::register');
 
 $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     //declaration des route protéger la par le filter d authentification
-    $routes->get('/dashboardUser', 'dashboardUser::index');
+    $routes->get('/dashboardUser', 'dashboardUserController::index');
     $routes->get('/dashboardAdmin', 'dashboardAdminController::index');
     $routes->get('/dashboardAdmin/editUser/(:num)', 'dashboardAdminController::editUser/$1');
     $routes->post('/dashboardAdmin/updateUser/(:num)', 'dashboardAdminController::updateUser/$1');
