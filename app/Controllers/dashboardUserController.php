@@ -19,4 +19,11 @@ class DashboardUserController extends BaseController
         ];
         return view('dashboardUser/index', $data);
     }
+
+    public function deleteBook($isbn)
+    {
+        $book = new \App\Models\BooksModel();
+        $book->delete($isbn);
+        return redirect()->to(base_url('dashboardUser'))->with('status', 'livre supprimer avec success');
+    }
 }

@@ -38,7 +38,7 @@
                 </tbody>
             </table>
 
-            <div class="card">
+            <div class="card border-primary">
                 <div class="card-header">
                     <h4>
                         liste de mes livres
@@ -63,7 +63,7 @@
                                     <td><?= $listBooks['title'] ?></td>
                                     <td><?= $listBooks['edition_year'] ?></td>
                                     <td><?= $listBooks['language'] ?></td>
-                                    <td>
+                                    <td> Résumé:
                                         <a class="Name" data-bs-target="#myModal" data-bs-toggle="modal">
                                             <?php echo $listBooks['title']; ?>
                                         </a>
@@ -73,7 +73,9 @@
 
 
                                         <a href="<?= base_url('' . $listBooks['isbn']) ?>" class="btn btn-success btn-sm">Edit</a>
-                                        <form action="<?= base_url('' . $listBooks['isbn']) ?>" method="POST">
+
+
+                                        <form action="<?= base_url('dashboardUser/deleteBook/' . $listBooks['isbn']) ?>" method="POST">
                                             <input type="hidden" name="_method" value="DELETE">
                                             <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-x"></i></button>
 
@@ -86,26 +88,19 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Modal title</h5>
+                                                <h5 class="modal-title"><?= $listBooks['title'] ?></h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <p>Modal body text goes here.</p>
+                                                <p><?= $listBooks['resume_book'] ?></p>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
-
-
-
 
                             <?php endforeach; ?>
                         </tbody>

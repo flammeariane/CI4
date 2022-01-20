@@ -40,6 +40,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->get('/dashboardAdmin/editUser/(:num)', 'dashboardAdminController::editUser/$1');
     $routes->post('/dashboardAdmin/updateUser/(:num)', 'dashboardAdminController::updateUser/$1');
     $routes->delete('/dashboardAdmin/deleteUser/(:num)', 'dashboardAdminController::deleteUser/$1');
+    $routes->delete('/dashboardUser/deleteBook/(:num)', 'dashboardUserController::deleteBook/$1');
 });
 
 $routes->group('', ['filter' => 'AlreadyLoggedFilter'], function ($routes) {
