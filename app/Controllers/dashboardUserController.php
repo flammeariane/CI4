@@ -20,6 +20,29 @@ class DashboardUserController extends BaseController
         return view('dashboardUser/index', $data);
     }
 
+    public function editBook($isbn)
+    {
+        $book = new \App\Models\BooksModel();
+        $data['book'] = $book->find($isbn);
+        return view('dashboardUser/editBook', $data);
+    }
+
+    public function updateBook($isbn)
+    {
+        $book = new \App\Models\BooksModel();
+        $book->find($isbn);
+        $data = [
+            'isbn' => $this->request->getPost('isbn'),
+            'title' => $this->request->getPost('title'),
+            'edition_year' => $this->request->getPost('edition_year'),
+            'language' => $this->request->getPost('language'),
+            'resume_book' => $this->request->getPost('resume_book'),
+
+        ];
+        $book->update($isbn, $data);
+        return redirect()->to(base_url('dashboardUser'))->with('status', 'mise a jour éffectuée avec succes');
+    }
+
     public function deleteBook($isbn)
     {
         $book = new \App\Models\BooksModel();

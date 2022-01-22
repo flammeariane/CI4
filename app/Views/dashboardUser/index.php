@@ -72,7 +72,8 @@
                                     <td>
 
 
-                                        <a href="<?= base_url('' . $listBooks['isbn']) ?>" class="btn btn-success btn-sm">Edit</a>
+
+                                        <a href="<?= base_url('dashboardUser/editBook/' . $listBooks['isbn']) ?>" class="btn btn-success btn-sm">Edit</a>
 
 
                                         <form action="<?= base_url('dashboardUser/deleteBook/' . $listBooks['isbn']) ?>" method="POST">
