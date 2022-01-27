@@ -18,8 +18,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>
-                            update utilisateur
-                            <a href="<?= base_url('dashboardAdmin') ?>" class=" btn btn-danger float-end">Retour</a>
+                            Mise à jour du compte
+                            <button class=" btn btn-danger float-end" onclick="history.back()">Retour</button>
                         </h4>
                     </div>
                     <div class="card-body">

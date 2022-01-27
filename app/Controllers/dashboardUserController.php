@@ -6,17 +6,23 @@ class DashboardUserController extends BaseController
 {
     public function index()
     {
+
         // recup des user infos
         $usersModel = new \App\Models\UsersModel();
         $loggedUserId = session()->get('loggedUser');
         $userInfo = $usersModel->find($loggedUserId);
         $bookModel = new \App\Models\BooksModel();
 
+
         $data = [
             'title' => 'DashboardUser',
             'userInfo' => $userInfo,
-            'listBooks' => $bookModel->findAll()
+            'listBooks' => $bookModel->findAll(),
+
         ];
+
+
+
         return view('dashboardUser/index', $data);
     }
 
@@ -48,5 +54,15 @@ class DashboardUserController extends BaseController
         $book = new \App\Models\BooksModel();
         $book->delete($isbn);
         return redirect()->to(base_url('dashboardUser'))->with('status', 'livre supprimer avec success');
+    }
+
+    function searchApi()
+    {
+        $userSearch = $_POST['userSearch'];
+        $resultApi = json_decode(file_get_contents('https://www.googleapis.com/books/v1/volumes?q=' . $userSearch));
+        $data2 = [
+            'result' => $resultApi
+        ];
+        return $data2;
     }
 }

@@ -16,7 +16,7 @@
     <div class="container">
         <div class="row">
 
-            <h4> bienvenue sur le dashboard utilisateur </h4>
+            <h4> bienvenue sur votre bibliothéque </h4>
             <hr>
             <table class="table table-hover">
                 <thead>
@@ -34,9 +34,43 @@
                         <td><?= $userInfo['email']; ?></td>
                         <td><?= $userInfo['admin']; ?></td>
                         <td><a href="<?= site_url('auth/logout'); ?>">Déconnexion</a></td>
+                        <td> <a href="<?= base_url('dashboardAdmin/editUser/' . $userInfo['id']) ?>" class="btn btn-success btn-sm">Edit</a></td>
                     </tr>
                 </tbody>
             </table>
+
+            <hr>
+
+
+
+            <div id="mainContent">
+                <h3> chercher un livre sur google </h3>
+                <div id="linkLink">
+                    <div class="row">
+                        <div class="col-sm-3">Search:</div>
+                        <div class="col-sm-3"><input id="inputSearchApi" class="form-control" type="text" name="userSearch" /></div>
+                        <div class="col-sm-3"><button onclick="searchApi();" class="btn btn-outline-success">search</button></div>
+                        <div class="col-sm-3"></div>
+                    </div>
+                </div>
+                <div id="linkContent">
+
+                    <?php
+
+                    //  var_dump();
+                    ?>
+
+
+                </div>
+            </div>
+            <hr class="mt-2">
+
+
+
+
+
+
+            <hr>
 
             <div class="card border-primary">
                 <div class="card-header">
@@ -75,11 +109,9 @@
 
                                         <a href="<?= base_url('dashboardUser/editBook/' . $listBooks['isbn']) ?>" class="btn btn-success btn-sm">Edit</a>
 
-
                                         <form action="<?= base_url('dashboardUser/deleteBook/' . $listBooks['isbn']) ?>" method="POST">
                                             <input type="hidden" name="_method" value="DELETE">
-                                            <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-x"></i></button>
-
+                                            <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-x">Delete</i></button>
                                         </form>
                                     </td>
                                 </tr>
