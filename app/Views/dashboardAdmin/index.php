@@ -26,7 +26,7 @@
             </div>
 
             <div class="col-3 offset-3">
-                <i class="bi bi-people"> <?= $userInfo['lastname']; ?></i> <a href="<?= site_url('auth/logout'); ?>">Déconnexion</a>
+                <i class="bi bi-people"> <?= $userInfo->lastname; ?></i> <a href="<?= site_url('auth/logout'); ?>">Déconnexion</a>
             </div>
 
 
