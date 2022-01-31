@@ -41,7 +41,10 @@ class DashboardAdminController extends BaseController
             'admin' => $this->request->getPost('admin'),
         ];
         $user->update($id, $data);
-        return redirect()->to(base_url('dashboardAdmin'))->with('status', 'mise a jour éffectuée avec succes');
+        if ($data['admin'] == 1) {
+            return redirect()->to(base_url('dashboardAdmin'))->with('status', 'mise a jour éffectuée avec succes');
+        }
+        return redirect()->to(base_url('dashboardUser'))->with('status', 'mise a jour éffectuée avec succes');
     }
 
     public function deleteUser($id)

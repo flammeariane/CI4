@@ -1,20 +1,8 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <!-- Custom styles for this template -->
-    <title>dashboard admin</title>
-    <?php include 'assets/css.php'; ?>
-</head>
+<?php include 'assets/include/head.php'; ?>
 
 <body>
 
-    <?php include 'assets/include/navbar.php'; ?>
+    <?php include 'assets/include/caroussel.php'; ?>
     <div class="container">
 
 
@@ -26,7 +14,7 @@
             </div>
 
             <div class="col-3 offset-3">
-                <i class="bi bi-people"> <?= $userInfo->lastname; ?></i> <a href="<?= site_url('auth/logout'); ?>">Déconnexion</a>
+                <i class="bi bi-people"> <?= $userInfo['lastname']; ?></i> <a href="<?= site_url('auth/logout'); ?>">Déconnexion</a>
             </div>
 
 
