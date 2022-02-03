@@ -49,29 +49,39 @@
                                         <input type="text" name="password" value="<?= $user->password ?>" class="form-control" placeholder="Entrez votre mot de passe">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label>Statut</label>
-                                        <input type="text" name="status" value="<?= $user->status ?>" class="form-control" placeholder="">
+
+
+                                <?php if ($user->admin == '1') : ?>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label>Statut</label>
+                                            <input type="text" name="status" value="<?= $user->status ?>" class="form-control" placeholder="">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label>Admin</label>
-                                        <input type="text" name="admin" value="<?= $user->admin ?>" class="form-control" placeholder="">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label>Admin</label>
+                                            <input type="text" name="admin" value="<?= $user->admin ?>" class="form-control" placeholder="">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group mb-3">
-                                        <button type="submit" class="btn btn-primary px-4"> Update </button>
-                                    </div>
-                                </div>
                             </div>
-                        </form>
+
+                        <?php endif; ?>
+
+
+
+                        <div class="col-md-12">
+                            <div class="form-group mb-3">
+                                <button type="submit" class="btn btn-primary px-4"> Update </button>
+                            </div>
+                        </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 
