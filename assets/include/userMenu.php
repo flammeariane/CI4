@@ -10,7 +10,7 @@
         <li>
             <hr class="dropdown-divider">
         </li>
-        <li><a class="dropdown-item" href=" <?= $userInfo['lastname']; ?></i> <a href=" <?= site_url('auth/logout'); ?>">Sign out</a></li>
+        <li><a class="dropdown-item" href="<?= site_url('auth/logout'); ?>">Sign out</a></li>
 
     </ul>
 </div>
