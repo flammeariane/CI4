@@ -14,7 +14,7 @@
             </div>
 
             <div class="col-3 offset-3">
-                <i class="bi bi-people"> <?= $userInfo['lastname']; ?></i> <a href="<?= site_url('auth/logout'); ?>">Déconnexion</a>
+                <i class="bi bi-people"> <?= $userInfo->lastname; ?></i> <a href="<?= site_url('auth/logout'); ?>">Déconnexion</a>
             </div>
 
 
@@ -50,16 +50,16 @@
                             <tbody>
                                 <?php foreach ($listUsers as $listUsers) : ?>
                                     <tr>
-                                        <td><?= $listUsers['firstname'] ?></td>
-                                        <td><?= $listUsers['lastname'] ?></td>
-                                        <td><?= $listUsers['email'] ?></td>
-                                        <td><?= $listUsers['password'] ?></td>
-                                        <td><?= $listUsers['creation_date'] ?></td>
-                                        <td><?= $listUsers['status'] ?></td>
-                                        <td><?= $listUsers['admin'] ?></td>
+                                        <td><?= $listUsers->firstname ?></td>
+                                        <td><?= $listUsers->lastname ?></td>
+                                        <td><?= $listUsers->email ?></td>
+                                        <td><?= $listUsers->password ?></td>
+                                        <td><?= $listUsers->creation_date ?></td>
+                                        <td><?= $listUsers->status ?></td>
+                                        <td><?= $listUsers->admin ?></td>
                                         <td>
-                                            <a href="<?= base_url('dashboardAdmin/editUser/' . $listUsers['id']) ?>" class="btn btn-success btn-sm">Edit</a>
-                                            <form action="<?= base_url('dashboardAdmin/deleteUser/' . $listUsers['id']) ?>" method="POST">
+                                            <a href="<?= base_url('dashboardAdmin/editUser/' . $listUsers->id) ?>" class="btn btn-success btn-sm">Edit</a>
+                                            <form action="<?= base_url('dashboardAdmin/deleteUser/' . $listUsers->id) ?>" method="POST">
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-x"></i></button>
 

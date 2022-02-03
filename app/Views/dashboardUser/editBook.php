@@ -23,30 +23,30 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <form action="<?= base_url('dashboardUser/updateBook/' . $book['isbn']) ?>" method="POST">
+                        <form action="<?= base_url('dashboardUser/updateBook/' . $book->isbn) ?>" method="POST">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label>isbn</label>
-                                        <input type="text" name="isbn" value="<?= $book['isbn'] ?>" class="form-control" placeholder="Entrez votre Prénom">
+                                        <input type="text" name="isbn" value="<?= $book->isbn ?>" class="form-control" placeholder="Entrez votre Prénom">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label>titre</label>
-                                        <input type="text" name="title" value="<?= $book['title'] ?>" class="form-control" placeholder="Entrez votre nom">
+                                        <input type="text" name="title" value="<?= $book->title ?>" class="form-control" placeholder="Entrez votre nom">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label>Année d"édition</label>
-                                        <input type="text" name="edition_year" value="<?= $book['edition_year'] ?>" class="form-control" placeholder="Entrez votre email">
+                                        <input type="text" name="edition_year" value="<?= $book->edition_year ?>" class="form-control" placeholder="Entrez votre email">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label>Langue</label>
-                                        <input type="text" name="language" value="<?= $book['language'] ?>" class="form-control" placeholder="Entrez votre mot de passe">
+                                        <input type="text" name="language" value="<?= $book->language ?>" class="form-control" placeholder="Entrez votre mot de passe">
                                     </div>
                                 </div>
 

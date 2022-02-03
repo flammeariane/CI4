@@ -115,20 +115,20 @@
                                 <tbody>
                                     <?php foreach ($listBooks as $listBooks) : ?>
                                         <tr>
-                                            <td><?= $listBooks['isbn'] ?></td>
-                                            <td><?= $listBooks['title'] ?></td>
-                                            <td><?= $listBooks['edition_year'] ?></td>
-                                            <td><?= $listBooks['language'] ?></td>
+                                            <td><?= $listBooks->isbn ?></td>
+                                            <td><?= $listBooks->title ?></td>
+                                            <td><?= $listBooks->edition_year ?></td>
+                                            <td><?= $listBooks->language ?></td>
                                             <td> Résumé:
                                                 <a class="Name" data-bs-target="#myModal" data-bs-toggle="modal">
-                                                    <?php echo $listBooks['title']; ?>
+                                                    <?php echo $listBooks->title; ?>
                                                 </a>
                                             </td>
 
                                             <td>
-                                                <a href="<?= base_url('dashboardUser/editBook/' . $listBooks['isbn']) ?>" class="btn btn-success btn-sm">Edit</a>
+                                                <a href="<?= base_url('dashboardUser/editBook/' . $listBooks->isbn) ?>" class="btn btn-success btn-sm">Edit</a>
 
-                                                <form action="<?= base_url('dashboardUser/deleteBook/' . $listBooks['isbn']) ?>" method="POST">
+                                                <form action="<?= base_url('dashboardUser/deleteBook/' . $listBooks->isbn) ?>" method="POST">
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-x">Delete</i></button>
                                                 </form>
@@ -140,11 +140,11 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title"><?= $listBooks['title'] ?></h5>
+                                                        <h5 class="modal-title"><?= $listBooks->title ?></h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p><?= $listBooks['resume_book'] ?></p>
+                                                        <p><?= $listBooks->resume_book ?></p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

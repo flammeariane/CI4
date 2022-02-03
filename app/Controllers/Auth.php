@@ -75,7 +75,8 @@ class Auth extends BaseController
                 'lastname' => $lastname,
                 'firstname' => $firstname,
                 'email' => $email,
-                'password' => Hash::hash_password($password),
+                'password' => $password,
+                // 'password' => Hash::hash_password($password),
 
             ];
             $usersModel = new \App\Models\UsersModel();
@@ -124,17 +125,18 @@ class Auth extends BaseController
             $password = $this->request->getPost('password');
             $usersModel = new \App\Models\UsersModel();
             $user_info = $usersModel->where('email', $email)->first();
-            $check_password = Hash::verify_hash($password, $user_info['password']);
+            // $check_password = Hash::verify_hash($password, $user_info['password']);
+            $check_password = $this->request->getPost('password');
 
 
-            if ($check_password) {
+            if (!$check_password) {
                 session()->setFlashdata('fail', 'incorrect password');
                 return redirect()->to('/auth')->withInput();
             } else {
                 //store info du user si loggin reussi
-                $user_id = $user_info['id'];
+                $user_id = $user_info->id;
                 session()->set('loggedUser', $user_id);
-                if ($user_info['admin'] == 1) {
+                if ($user_info->admin == 1) {
                     return redirect()->to('/dashboardAdmin');
                 }
                 return redirect()->to('/dashboardUser');

@@ -23,42 +23,42 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <form action="<?= base_url('dashboardAdmin/updateUser/' . $user['id']) ?>" method="POST">
+                        <form action="<?= base_url('dashboardAdmin/updateUser/' . $user->id) ?>" method="POST">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label>Prénom</label>
-                                        <input type="text" name="firstname" value="<?= $user['firstname'] ?>" class="form-control" placeholder="Entrez votre Prénom">
+                                        <input type="text" name="firstname" value="<?= $user->firstname ?>" class="form-control" placeholder="Entrez votre Prénom">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label>Nom</label>
-                                        <input type="text" name="lastname" value="<?= $user['lastname'] ?>" class="form-control" placeholder="Entrez votre nom">
+                                        <input type="text" name="lastname" value="<?= $user->lastname ?>" class="form-control" placeholder="Entrez votre nom">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label>Email</label>
-                                        <input type="text" name="email" value="<?= $user['email'] ?>" class="form-control" placeholder="Entrez votre email">
+                                        <input type="text" name="email" value="<?= $user->email ?>" class="form-control" placeholder="Entrez votre email">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label>Mot de passe</label>
-                                        <input type="text" name="password" value="<?= $user['password'] ?>" class="form-control" placeholder="Entrez votre mot de passe">
+                                        <input type="text" name="password" value="<?= $user->password ?>" class="form-control" placeholder="Entrez votre mot de passe">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label>Statut</label>
-                                        <input type="text" name="status" value="<?= $user['status'] ?>" class="form-control" placeholder="">
+                                        <input type="text" name="status" value="<?= $user->status ?>" class="form-control" placeholder="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label>Admin</label>
-                                        <input type="text" name="admin" value="<?= $user['admin'] ?>" class="form-control" placeholder="">
+                                        <input type="text" name="admin" value="<?= $user->admin ?>" class="form-control" placeholder="">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
