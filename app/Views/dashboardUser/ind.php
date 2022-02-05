@@ -21,20 +21,19 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard Admin</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="bi bi-file-pdf"></i> Generate Report</a>
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard Utilisateur</h1>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i class="bi bi-file-pdf"></i> Generate Report</a>
                     </div>
 
                     <!-- Content Row -->
                     <div class="row">
 
-
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="col-xl-3 col-md-6 mb-4 offset-1">
+                            <div class="card border-left-dark shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
                                                 nombre d'utilisateur</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">50</div>
                                         </div>
@@ -52,7 +51,7 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">profil completion
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
@@ -79,7 +78,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
+                                                Nombre de livres enregistré</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                                         </div>
                                         <div class="col-auto">
@@ -91,19 +90,19 @@
                         </div>
                     </div>
 
+
+
                     <!-- Content Row -->
 
                     <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-9 offset-1">
                             <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
+
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">liste des utilisateur</h6>
+                                    <h6 class="m-0 font-weight-bold text-info">liste des utilisateur</h6>
 
                                 </div>
-                                <!-- Card Body -->
+
                                 <div class="card-body">
 
                                 </div>
@@ -137,7 +136,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Déconnexion?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">vous partez déjà ? </h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -145,7 +144,7 @@
                 <div class="modal-body">Sélectionnez "Déconnexion" ci-dessous si vous êtes prêt à terminer votre session en cours.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Annulé</button>
-                    <a class="btn btn-primary" href="<?= site_url('auth/logout'); ?>">Déconnexion</a>
+                    <a class="btn btn-info" href="<?= site_url('auth/logout'); ?>">Déconnexion</a>
                 </div>
             </div>
         </div>

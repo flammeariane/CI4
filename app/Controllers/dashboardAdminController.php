@@ -17,9 +17,8 @@ class DashboardAdminController extends BaseController
             'listUsers' => $usersModel->findAll(),
         ];
         //  var_dump($data['listUsers']);
-        return view('dashboardAdmin/ind', $data);
+        return view('dashboardAdmin/index', $data);
     }
-
 
 
     public function editUser($id)
