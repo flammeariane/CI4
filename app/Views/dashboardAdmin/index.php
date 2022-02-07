@@ -1,7 +1,6 @@
 <?php include 'assets/include/head.php'; ?>
 
 <body id="page-top">
-
     <div id="wrapper">
         <?php include 'assets/include/sideBar.php'; ?>
         <!-- Content Wrapper -->
@@ -33,13 +32,13 @@
                     <div class="row">
 
                         <div class="col-xl-3 col-md-6 mb-4 offset-1">
-                            <div class="card border-left-dark shadow h-100 py-2">
+                            <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                 nombre d'utilisateur</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">50</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo sizeof($listUsers) ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -48,14 +47,29 @@
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">profil completion
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Nombre de livres enregistré</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo sizeof($listBook) ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-dark shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">profil completion
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
@@ -63,7 +77,7 @@
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-dark" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -76,25 +90,8 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Nombre de livres enregistré</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
-
-
 
                     <!-- Content Row -->
 
@@ -118,31 +115,54 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($listUsers as $listUsers) : ?>
+                                        <?php foreach ($listUsers as $key => $user) : ?>
                                             <tr>
-                                                <td><?= $listUsers->firstname ?></td>
-                                                <td><?= $listUsers->lastname ?></td>
-                                                <td><?= $listUsers->email ?></td>
-                                                <td><?= $listUsers->password ?></td>
-                                                <td><?= $listUsers->creation_date ?></td>
-                                                <td><?= $listUsers->status ?></td>
-                                                <td><?= $listUsers->admin ?></td>
+                                                <td><?= $user->firstname ?></td>
+                                                <td><?= $user->lastname ?></td>
+                                                <td><?= $user->email ?></td>
+                                                <td><?= $user->password ?></td>
+                                                <td><?= $user->creation_date ?></td>
+                                                <td><?= $user->status ?></td>
+                                                <td><?= $user->admin ?></td>
                                                 <td>
-                                                    <form action="<?= base_url('dashboardAdmin/deleteUser/' . $listUsers->id) ?>" method="POST">
-                                                        <a href="<?= base_url('dashboardAdmin/editUser/' . $listUsers->id) ?>" class="btn btn-secondary btn-sm"><i class="bi bi-pencil-square"></i>Edit</a>
+                                                    <form action="<?= base_url('dashboardAdmin/deleteUser/' . $user->id) ?>" method="POST">
+                                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal<?php echo $key; ?>
+                                                        ">Voir image</button>
+
+                                                        <a href="<?= base_url('dashboardAdmin/editUser/' . $user->id) ?>" class="btn btn-secondary btn-sm"><i class="bi bi-pencil-square"></i>Edit</a>
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <button type="submit" class="btn btn-circle btn-warning btn-sm"><i class="bi bi-trash"></i></button>
                                                     </form>
                                                 </td>
                                             </tr>
+
+
+
+                                            <div class="modal" tabindex="-1" id="modal<?php echo $key; ?>">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Modal title</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p><?php echo $user->firstname; ?></p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-
-
-
                     </div>
                 </div>
             </div>
@@ -187,6 +207,11 @@
             </div>
         </div>
     </div>
+
+    <!-- EDIT user Modal -->
+
+
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="assets/vendor/jquery/jquery.min.js"></script>

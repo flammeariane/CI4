@@ -10,11 +10,13 @@ class DashboardAdminController extends BaseController
         $usersModel = new \App\Models\UsersModel();
         $loggedUserId = session()->get('loggedUser');
         $userInfo = $usersModel->find($loggedUserId);
+        $listBook = new \App\Models\BooksModel();
 
         $data = [
             'title' => 'DashboardAdmin',
             'userInfo' => $userInfo,
             'listUsers' => $usersModel->findAll(),
+            'listBook' => $listBook->findAll(),
         ];
         //  var_dump($data['listUsers']);
         return view('dashboardAdmin/index', $data);

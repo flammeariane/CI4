@@ -23,7 +23,7 @@ class DashboardUserController extends BaseController
 
 
 
-        return view('dashboardUser/ind', $data);
+        return view('dashboardUser/index', $data);
     }
 
     public function editBook($isbn)
