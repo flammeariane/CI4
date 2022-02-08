@@ -41,6 +41,11 @@ class DashboardAdminController extends BaseController
             'password' => $this->request->getPost('password'),
             'status' => $this->request->getPost('status'),
             'admin' => $this->request->getPost('admin'),
+            'birthdate' => $this->request->getPost('birthdate'),
+            'tel_number' => $this->request->getPost('tel_number'),
+            'street' => $this->request->getPost('street'),
+            'post_code' => $this->request->getPost('post_code'),
+
         ];
         $user->update($id, $data);
         if ($data['admin'] == 1) {
