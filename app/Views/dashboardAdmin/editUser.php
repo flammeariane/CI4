@@ -50,6 +50,31 @@
                                     </div>
                                 </div>
 
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label>Date de naissance</label>
+                                        <input type="text" name="birthdate" value="<?= $user->birthdate ?>" class="form-control" placeholder="Entrez votre date de naissance">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label>Numero de téléphone</label>
+                                        <input type="text" name="tel_number" value="<?= $user->tel_number ?>" class="form-control" placeholder="Entrez numero de téléphone">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label>Rue</label>
+                                        <input type="text" name="street" value="<?= $user->street ?>" class="form-control" placeholder="Entrez le nom de votre rue">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label>Code Postal</label>
+                                        <input type="text" name="post_code" value="<?= $user->post_code ?>" class="form-control" placeholder="Entrez code postal ">
+                                    </div>
+                                </div>
+
 
                                 <?php if ($user->admin == '1') : ?>
 
