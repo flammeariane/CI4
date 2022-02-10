@@ -90,7 +90,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Content Row -->
 
                     <div class="card shadow mb-4">
@@ -151,9 +150,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
-
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
