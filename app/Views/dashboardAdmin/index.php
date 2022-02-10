@@ -134,8 +134,6 @@
                                                 </td>
                                             </tr>
 
-
-
                                             <div class="modal" tabindex="-1" id="modal<?php echo $key; ?>">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">

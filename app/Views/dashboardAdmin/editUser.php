@@ -76,7 +76,8 @@
                                 </div>
 
 
-                                <?php if ($user->admin == '1') : ?>
+
+                                <?php if (($_SESSION['isAdmin'])) : ?>
 
                                     <div class="col-md-6">
                                         <div class="form-group mb-3">

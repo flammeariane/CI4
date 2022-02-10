@@ -96,7 +96,6 @@ class Auth extends BaseController
     function Check()
     {
         //verification des données introduite par le user dans le formulaire 
-
         $validation = $this->validate([
             'email' => [
                 'rules' => 'required|valid_email|is_not_unique[users.email]',
@@ -127,6 +126,8 @@ class Auth extends BaseController
             $user_info = $usersModel->where('email', $email)->first();
             // $check_password = Hash::verify_hash($password, $user_info['password']);
             $check_password = $this->request->getPost('password');
+
+            session()->set('isAdmin', $user_info->admin);
 
 
             if (!$check_password) {

@@ -11,12 +11,15 @@ class DashboardAdminController extends BaseController
         $loggedUserId = session()->get('loggedUser');
         $userInfo = $usersModel->find($loggedUserId);
         $listBook = new \App\Models\BooksModel();
+        $isAdmin = session()->get('isAdmin');
+
 
         $data = [
             'title' => 'DashboardAdmin',
             'userInfo' => $userInfo,
             'listUsers' => $usersModel->findAll(),
             'listBook' => $listBook->findAll(),
+            'isAdmin' => $isAdmin
         ];
         //  var_dump($data['listUsers']);
         return view('dashboardAdmin/index', $data);
@@ -34,6 +37,8 @@ class DashboardAdminController extends BaseController
     {
         $user = new \App\Models\UsersModel();
         $user->find($id);
+        $loggedUserId = session()->get('loggedUser');
+        $userInfo = $user->find($loggedUserId);
         $data = [
             'firstname' => $this->request->getPost('firstname'),
             'lastname' => $this->request->getPost('lastname'),
@@ -48,7 +53,7 @@ class DashboardAdminController extends BaseController
 
         ];
         $user->update($id, $data);
-        if ($data['admin'] == 1) {
+        if ($userInfo['admin'] == 1) {
             return redirect()->to(base_url('dashboardAdmin'))->with('status', 'mise a jour éffectuée avec succes');
         }
         return redirect()->to(base_url('dashboardUser'))->with('status', 'mise a jour éffectuée avec succes');
