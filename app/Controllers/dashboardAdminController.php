@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\CustomModel;
+use App\Models\QueryModel;
 use App\Models\UsersModel;
 use App\Models\BooksModel;
 use App\Models\LibraryModel;

@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\CustomModel;
+use App\Models\QueryModel;
 use App\Models\UsersModel;
 use App\Models\BooksModel;
 use App\Models\LibraryModel;
@@ -15,7 +15,7 @@ class DashboardUserController extends BaseController
         $usersModel = new UsersModel();
         $bookModel = new BooksModel();
         $LibraryModel = new LibraryModel();
-        $customModel = new CustomModel($db);
+        $QueryModel = new QueryModel($db);
 
         $loggedUserId = session()->get('loggedUser');
         $userInfo = $usersModel->find($loggedUserId);
@@ -27,7 +27,7 @@ class DashboardUserController extends BaseController
             'userInfo' => $userInfo,
             'listBooks' => $bookModel->findAll(),
             'Library' => $LibraryModel->findAll($loggedUserId),
-            'myLibrabry' => $customModel->getMyLibrary($loggedUserId)
+            'myLibrabry' => $QueryModel->getMyLibrary($loggedUserId)
         ];
 
         return view('dashboardUser/index', $data);

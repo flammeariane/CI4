@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Database\ConnectionInterface;
 
-class CustomModel
+class QueryModel
 {
 
     protected $db;
