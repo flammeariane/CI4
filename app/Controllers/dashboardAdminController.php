@@ -2,15 +2,20 @@
 
 namespace App\Controllers;
 
+use App\Models\CustomModel;
+use App\Models\UsersModel;
+use App\Models\BooksModel;
+use App\Models\LibraryModel;
+
 class DashboardAdminController extends BaseController
 {
     public function index()
     {
         // recup des user infos
-        $usersModel = new \App\Models\UsersModel();
+        $usersModel = new UsersModel();
         $loggedUserId = session()->get('loggedUser');
         $userInfo = $usersModel->find($loggedUserId);
-        $listBook = new \App\Models\BooksModel();
+        $listBook = new BooksModel();
         $isAdmin = session()->get('isAdmin');
 
 
@@ -28,14 +33,14 @@ class DashboardAdminController extends BaseController
 
     public function editUser($id)
     {
-        $user = new \App\Models\UsersModel();
+        $user = new UsersModel();
         $data['user'] = $user->find($id);
         return view('dashboardAdmin/editUser', $data);
     }
 
     public function updateUser($id)
     {
-        $user = new \App\Models\UsersModel();
+        $user = new UsersModel();
         $user->find($id);
         $loggedUserId = session()->get('loggedUser');
         $userInfo = $user->find($loggedUserId);
@@ -61,7 +66,7 @@ class DashboardAdminController extends BaseController
 
     public function deleteUser($id)
     {
-        $user = new \App\Models\UsersModel();
+        $user = new UsersModel();
         $user->delete($id);
         return redirect()->to(base_url('dashboardAdmin'))->with('status', 'utilisateur supprimer avec success');
     }

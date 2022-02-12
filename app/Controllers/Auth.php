@@ -5,6 +5,9 @@ namespace App\Controllers;
 use CodeIgniter\Database\Query;
 use App\Libraries\Hash;
 
+use App\Models\UsersModel;
+
+
 class Auth extends BaseController
 {
     public function __construct()
@@ -79,7 +82,7 @@ class Auth extends BaseController
                 // 'password' => Hash::hash_password($password),
 
             ];
-            $usersModel = new \App\Models\UsersModel();
+            $usersModel = new UsersModel();
             $query = $usersModel->insert($values);
             if (!$query) {
                 return redirect()->back()->with('fail', 'erreur d enregistrement');
@@ -122,7 +125,7 @@ class Auth extends BaseController
         } else {
             $email = $this->request->getPost('email');
             $password = $this->request->getPost('password');
-            $usersModel = new \App\Models\UsersModel();
+            $usersModel = new UsersModel();
             $user_info = $usersModel->where('email', $email)->first();
             // $check_password = Hash::verify_hash($password, $user_info['password']);
             $check_password = $this->request->getPost('password');

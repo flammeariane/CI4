@@ -134,7 +134,8 @@
                                     </thead>
                                     <tbody>
 
-                                        <?php foreach ($listBooks as $key => $Book) : ?>
+                                        <?php foreach ($myLibrabry as $key => $Book) : ?>
+
                                             <tr>
                                                 <td><?= $Book->isbn ?></td>
                                                 <td><?= $Book->title ?></td>
@@ -174,6 +175,7 @@
                                 </div>
                             </div>
                         <?php endforeach; ?>
+
                         </tbody>
                         </table>
                         </div>
@@ -183,20 +185,20 @@
         </div>
 
     </div>
-    </div>
+
     <!--container -->
 
-    </div>
+
     <!-- End of Main Content -->
 
     <!-- Footer -->
     <?php include 'assets/include/footer.php'; ?>
 
 
-    </div>
+
     <!-- End of Content Wrapper -->
 
-    </div>
+
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
