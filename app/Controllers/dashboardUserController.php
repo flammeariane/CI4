@@ -14,19 +14,14 @@ class DashboardUserController extends BaseController
         $db = db_connect();
         $usersModel = new UsersModel();
         $bookModel = new BooksModel();
-        $LibraryModel = new LibraryModel();
         $QueryModel = new QueryModel($db);
 
         $loggedUserId = session()->get('loggedUser');
         $userInfo = $usersModel->find($loggedUserId);
 
-
-
         $data = [
-            'title' => 'DashboardUser',
             'userInfo' => $userInfo,
             'listBooks' => $bookModel->findAll(),
-            'Library' => $LibraryModel->findAll($loggedUserId),
             'myLibrabry' => $QueryModel->getMyLibrary($loggedUserId)
         ];
 
@@ -42,11 +37,11 @@ class DashboardUserController extends BaseController
             'edition_year' => $this->request->getPost('edition_year'),
             'language' => $this->request->getPost('language'),
             'resume_book' => $this->request->getPost('resume_book'),
-
         ];
         $book->update($data);
         return redirect()->to(base_url('dashboardUser'))->with('status', 'votre livre à été ajouté avec succes');
     }
+
     public function editBook($isbn)
     {
         $book = new BooksModel();
