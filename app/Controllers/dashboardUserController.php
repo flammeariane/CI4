@@ -6,6 +6,7 @@ use App\Models\QueryModel;
 use App\Models\UsersModel;
 use App\Models\BooksModel;
 use App\Models\LibraryModel;
+use CodeIgniter\HTTP\Request;
 
 class DashboardUserController extends BaseController
 {
@@ -71,6 +72,7 @@ class DashboardUserController extends BaseController
         $book->delete($isbn);
         return redirect()->to(base_url('dashboardUser'))->with('status', 'livre supprimé avec success');
     }
+
 
     function searchApi()
     {

@@ -2,10 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Models\QueryModel;
 use App\Models\UsersModel;
 use App\Models\BooksModel;
-use App\Models\LibraryModel;
+use App\Models\ImageModel;
 
 class DashboardAdminController extends BaseController
 {
@@ -58,7 +57,7 @@ class DashboardAdminController extends BaseController
 
         ];
         $user->update($id, $data);
-        if ($userInfo['admin'] == 1) {
+        if ($_SESSION['isAdmin']) {
             return redirect()->to(base_url('dashboardAdmin'))->with('status', 'mise a jour éffectuée avec succes');
         }
         return redirect()->to(base_url('dashboardUser'))->with('status', 'mise a jour éffectuée avec succes');
@@ -69,5 +68,16 @@ class DashboardAdminController extends BaseController
         $user = new UsersModel();
         $user->delete($id);
         return redirect()->to(base_url('dashboardAdmin'))->with('status', 'utilisateur supprimer avec success');
+    }
+
+    public function addImage()
+    {
+        $imageModel = new ImageModel();
+        $file = $this->request->getFile('userProfileImage');
+        $newName = $file->getRandomName();
+        $file->move(WRITEPATH . 'uploads', $newName);
+        $imageData = ["img_name" => "userProfileImage", "url" => "public/image", "id_user" => '7'];
+        $imageModel->insert($imageData);
+        return redirect()->to(base_url('dashboardAdmin'))->with('status', '');
     }
 }

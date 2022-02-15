@@ -42,7 +42,7 @@ class File extends SplFileInfo
      */
     public function __construct(string $path, bool $checkFile = false)
     {
-        if ($checkFile && ! is_file($path)) {
+        if ($checkFile && !is_file($path)) {
             throw FileNotFoundException::forFileNotFound($path);
         }
 
@@ -58,7 +58,7 @@ class File extends SplFileInfo
      *
      * @return false|int The file size in bytes, or false on failure
      */
-    #[ReturnTypeWillChange]
+
     public function getSize()
     {
         return $this->size ?? ($this->size = parent::getSize());
@@ -101,7 +101,7 @@ class File extends SplFileInfo
      */
     public function getMimeType(): string
     {
-        if (! function_exists('finfo_open')) {
+        if (!function_exists('finfo_open')) {
             return $this->originalMimeType ?? 'application/octet-stream'; // @codeCoverageIgnore
         }
 
@@ -137,7 +137,7 @@ class File extends SplFileInfo
 
         $oldName = $this->getRealPath() ?: $this->__toString();
 
-        if (! @rename($oldName, $destination)) {
+        if (!@rename($oldName, $destination)) {
             $error = error_get_last();
 
             throw FileException::forUnableToMove($this->getBasename(), $targetPath, strip_tags($error['message']));
