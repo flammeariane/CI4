@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class ImageModel extends Model
 {
     protected $table = 'img';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_img';
     protected $allowedFields = ['id_user', 'img_name', 'active', "url"];
     protected $returnType    = \App\Entities\ImageEntity::class;
 }

@@ -40,9 +40,15 @@ class DashboardAdminController extends BaseController
     public function updateUser($id)
     {
         $user = new UsersModel();
+        $imageModel = new ImageModel();
         $user->find($id);
         $loggedUserId = session()->get('loggedUser');
         $userInfo = $user->find($loggedUserId);
+        $file = $this->request->getFile('userProfileImage');
+        $name = $file->getRandomName();
+        $file->move('./assets/img/', $name);
+        $imageData = ["img_name" => $name, "url" => "./assets/img/", "id_user" => $id];
+        $imageModel->insert($imageData);
         $data = [
             'firstname' => $this->request->getPost('firstname'),
             'lastname' => $this->request->getPost('lastname'),
@@ -54,13 +60,12 @@ class DashboardAdminController extends BaseController
             'tel_number' => $this->request->getPost('tel_number'),
             'street' => $this->request->getPost('street'),
             'post_code' => $this->request->getPost('post_code'),
-
         ];
         $user->update($id, $data);
         if ($_SESSION['isAdmin']) {
             return redirect()->to(base_url('dashboardAdmin'))->with('status', 'mise a jour éffectuée avec succes');
         }
-        return redirect()->to(base_url('dashboardUser'))->with('status', 'mise a jour éffectuée avec succes');
+        return redirect()->to(base_url('dashboardAdmin'))->with('status', 'mise a jour éffectuée avec succes');
     }
 
     public function deleteUser($id)
@@ -68,16 +73,5 @@ class DashboardAdminController extends BaseController
         $user = new UsersModel();
         $user->delete($id);
         return redirect()->to(base_url('dashboardAdmin'))->with('status', 'utilisateur supprimer avec success');
-    }
-
-    public function addImage()
-    {
-        $imageModel = new ImageModel();
-        $file = $this->request->getFile('userProfileImage');
-        $newName = $file->getRandomName();
-        $file->move(WRITEPATH . 'uploads', $newName);
-        $imageData = ["img_name" => "userProfileImage", "url" => "public/image", "id_user" => '7'];
-        $imageModel->insert($imageData);
-        return redirect()->to(base_url('dashboardAdmin'))->with('status', '');
     }
 }
