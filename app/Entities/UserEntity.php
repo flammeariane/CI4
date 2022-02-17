@@ -8,9 +8,4 @@ use CodeIgniter\Images\Image;
 
 class UserEntity extends Entity
 {
-    public function getImage()
-    {
-        $imageModel = new ImageModel();
-        return $imageModel->where('id_user', $this->id)->find();
-    }
 }

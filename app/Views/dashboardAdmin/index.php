@@ -117,14 +117,16 @@
                                                 <td><?= $user->firstname ?></td>
                                                 <td><?= $user->lastname ?></td>
                                                 <td><?= $user->email ?></td>
-                                                <td><?= $user->password ?></td>
+                                                <td> Password: <input type="password" id="input<?php echo $key; ?>" value="<?= $user->password ?>">
+                                                    <input type="checkbox" onclick="myFunction()"> Voir le mot de passe
+                                                </td>
                                                 <td><?= $user->creation_date ?></td>
                                                 <td><?= $user->status ?></td>
                                                 <td><?= $user->admin ?></td>
                                                 <td>
                                                     <form action="<?= base_url('dashboardAdmin/deleteUser/' . $user->id) ?>" method="POST">
-                                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal<?php echo $key; ?>
-                                                        ">Voir image</button>
+                                                        <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modal<?php echo $key; ?>
+                                                        "><i class="bi bi-eye"></i></button>
 
                                                         <a href="<?= base_url('dashboardAdmin/editUser/' . $user->id) ?>" class="btn btn-secondary btn-sm"><i class="bi bi-pencil-square"></i>Edit</a>
                                                         <input type="hidden" name="_method" value="DELETE">
@@ -137,15 +139,17 @@
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title">Edit user</h5>
+                                                            <h5 class="modal-title"><?php echo $user->firstname; ?> <?php echo $user->lastname; ?></h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <p><?php echo $user->firstname; ?></p>
+
+                                                            <img src="<?php echo base_url('/assets/img/' . $user->profil_img_name) ?>" class=" img-fluid img-thumbnail border border-info rounded" />
+
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                                            <a href="<?= base_url('dashboardAdmin/editUser/' . $user->id) ?>" class="btn btn-info "><i class="bi bi-pencil-square"></i>Edit</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -199,6 +203,19 @@
             </div>
         </div>
     </div>
+
+
+    <!-- script afficahe en clair du mot de passe -->
+    <script>
+        function myFunction() {
+            var x = document.getElementById("input<?php echo $key; ?>");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
 
 
 

@@ -24,6 +24,12 @@
                     </div>
                     <div class="card-body">
                         <form action="<?= base_url('dashboardAdmin/updateUser/' . $user->id) ?>" method="POST" enctype="multipart/form-data">
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <img src="<?php echo base_url('/assets/img/' . $user->profil_img_name) ?>" class=" img-fluid img-thumbnail border border-info rounded" />
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
@@ -95,9 +101,16 @@
 
 
                         <?php endif; ?>
-                        <div class="form-group">
-                            <label for="userProfileImage">Upload Image</label>
-                            <input name="userProfileImage" id="userProfileImage" class="form-control" placeholder="Photo" type="file" enctype="multipart/form-data">
+                        <div class=" row form-group">
+                            <div class="col-6">
+                                <label for="userProfileImage">Upload Image</label>
+                                <input name="userProfileImage" id="userProfileImage" class="form-control" placeholder="Photo" type="file" enctype="multipart/form-data">
+
+                            </div>
+
+
+
+
 
                         </div>
 
@@ -105,7 +118,7 @@
 
                         <div class="col-md-12 offset-11 mt-2">
                             <div class="form-group mb-3">
-                                <button type="submit" class="btn btn-primary px-4"> Update </button>
+                                <button type="submit" class="btn btn-info px-4"> Update </button>
                             </div>
                         </div>
                     </div>
