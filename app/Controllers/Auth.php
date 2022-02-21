@@ -144,7 +144,6 @@ class Auth extends BaseController
                     return redirect()->to('/dashboardAdmin');
                 }
                 return redirect()->to('/dashboardUser');
-                //TODO separer user&admin pour la redirection dashboard
             }
         }
     }

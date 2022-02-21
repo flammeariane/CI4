@@ -6,14 +6,13 @@ use App\Models\UsersModel;
 use App\Models\BooksModel;
 use App\Models\ImageModel;
 use App\Models\QueryModel;
+use App\Models\LibraryModel;
 
 class DashboardAdminController extends BaseController
 {
     public function index()
     {
-
         $db = db_connect();
-
         $usersModel = new UsersModel();
         $imageModel = new ImageModel();
         $listBook = new BooksModel();
@@ -22,8 +21,6 @@ class DashboardAdminController extends BaseController
         $loggedUserId = session()->get('loggedUser');
         $userInfo = $usersModel->find($loggedUserId);
         $isAdmin = session()->get('isAdmin');
-
-
 
         $data = [
             'title' => 'DashboardAdmin',
@@ -54,23 +51,43 @@ class DashboardAdminController extends BaseController
         $user->find($id);
         $loggedUserId = session()->get('loggedUser');
         $userInfo = $user->find($loggedUserId);
-        $file = $this->request->getFile('userProfileImage');
-        $name = $file->getRandomName();
-        $file->move('./assets/img/', $name);
 
-        $data = [
-            'firstname' => $this->request->getPost('firstname'),
-            'lastname' => $this->request->getPost('lastname'),
-            'email' => $this->request->getPost('email'),
-            'password' => $this->request->getPost('password'),
-            'status' => $this->request->getPost('status'),
-            'admin' => $this->request->getPost('admin'),
-            'birthdate' => $this->request->getPost('birthdate'),
-            'tel_number' => $this->request->getPost('tel_number'),
-            'street' => $this->request->getPost('street'),
-            'post_code' => $this->request->getPost('post_code'),
-            'profil_img_name' => $name,
-        ];
+        $file = $this->request->getFile('userProfileImage');
+        if ($file != '') {
+            $name = $file->getRandomName();
+            $file->move('./assets/img/', $name);
+
+
+
+            $data = [
+                'firstname' => $this->request->getPost('firstname'),
+                'lastname' => $this->request->getPost('lastname'),
+                'email' => $this->request->getPost('email'),
+                'password' => $this->request->getPost('password'),
+                'status' => $this->request->getPost('status'),
+                'admin' => $this->request->getPost('admin'),
+                'birthdate' => $this->request->getPost('birthdate'),
+                'tel_number' => $this->request->getPost('tel_number'),
+                'street' => $this->request->getPost('street'),
+                'post_code' => $this->request->getPost('post_code'),
+                'profil_img_name' => $name,
+            ];
+        } else {
+            $data = [
+                'firstname' => $this->request->getPost('firstname'),
+                'lastname' => $this->request->getPost('lastname'),
+                'email' => $this->request->getPost('email'),
+                'password' => $this->request->getPost('password'),
+                'status' => $this->request->getPost('status'),
+                'admin' => $this->request->getPost('admin'),
+                'birthdate' => $this->request->getPost('birthdate'),
+                'tel_number' => $this->request->getPost('tel_number'),
+                'street' => $this->request->getPost('street'),
+                'post_code' => $this->request->getPost('post_code'),
+            ];
+        }
+
+
         $user->update($id, $data);
         if ($_SESSION['isAdmin']) {
             //fix redirect
@@ -85,4 +102,46 @@ class DashboardAdminController extends BaseController
         $user->delete($id);
         return redirect()->to(base_url('dashboardAdmin'))->with('status', 'utilisateur supprimer avec success');
     }
-}
+
+
+
+    public function viewUserBook()
+    {
+        $db = db_connect();
+        $usersModel = new UsersModel();
+
+        $listBook = new BooksModel();
+        $QueryModel = new QueryModel($db);
+
+        $loggedUserId = session()->get('loggedUser');
+        $userInfo = $usersModel->find($loggedUserId);
+        $isAdmin = session()->get('isAdmin');
+
+        echo base_url();
+
+        $data = [
+            'title' => 'DashboardAdmin',
+            'userInfo' => $userInfo,
+            'listUsers' => $usersModel->findAll(),
+            'listBook' => $listBook->findAll(),
+            'isAdmin' => $isAdmin,
+
+        ];
+        //  var_dump($data['listUsers']);
+        return view('dashboardAdmin/viewUserBook', $data);
+    }
+
+    public function action()
+    {
+
+        if ($this->request->getVar('user_id')) {
+            $action = $this->request->getvar('user_id');
+
+            $book = new LibraryModel();
+            $bookdata =  $book->where('id_users', $this->request->getVar('user_id'))->findAll();
+
+            echo ("<script>console.log('PHP: " . $bookdata . "');</script>");
+            echo json_decode($bookdata);
+        }
+    }
+};

@@ -83,4 +83,22 @@ class DashboardUserController extends BaseController
         ];
         return $data2;
     }
+    function searchBook($k)
+    {
+        //$k = $_REQUEST['k'];
+        $book = new BooksModel();
+        $bt = $book->where('title like ', $k . '%')->findAll();
+        $data['bt'] = $bt;
+        return view('dashboardUser/bt', $data);
+    }
+
+
+    function bookS()
+    {
+        return view('dashboardUser/book_search');
+    }
+
+    function process_data()
+    {
+    }
 }

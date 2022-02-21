@@ -28,6 +28,15 @@
                         <div class="alert alert-success"><?= session()->getFlashdata('status'); ?></div>
                     <?php endif ?>
 
+
+
+                    <div>
+
+                        <a href="#" onclick="Set_Form(); return false;">Test</a>
+                        <script type="text/javascript" src="jquery_3_1_1.js"></script>
+                        <script type="text/javascript" src="ajax.js"></script>
+                    </div>
+
                     <!-- Content Row -->
                     <div class="row">
 
@@ -94,108 +103,85 @@
                             </div>
                         </div>
                     </div>
+
+
+
+                    <!-- search book  -->
+
+                    <input type="text" id="it" onkeyup="loadAjax()" />
+
+                    <div id="results"></div>
+
+
+
                     <!-- Content Row -->
-                    <form action="dashboardUser/searchApi" method="post">
-                        <div class="row" id="mainContent">
-                            <div id="linkLink">
-                                <div class="row">
-                                    <div class="col-sm-3">chercher un livre sur google:</div>
-                                    <input type="texte" name="userSearch" class="form-control form-control-user" id="userSearch">
 
-                                    <div class="col-sm-3"><button type="su" class="btn btn-outline-success">search</button></div>
-                                    <div class="col-sm-3"></div>
-                                </div>
-                            </div>
-                            <div id="linkContent">
-
-                                <?php
-                                if (!function_exists("pre")) {
-                                    function pre($data2 = null)
-                                    {
-                                        echo "<pre>";
-                                        print_r($data2);
-                                        echo "</pre>";
-                                    }
-                                }
-                                ?>
-
-                                <?php
-
-                                //var_dump($data2);
-                                ?>
-
-                            </div>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-info">Liste des Mes livres</h6>
                         </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>isbn</th>
+                                            <th>titre</th>
+                                            <th>Année d'édition</th>
+                                            <th>Langue</th>
+                                            <th>Résumé</th>
+                                            <th>Edit</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
+                                        <?php foreach ($myLibrabry as $key => $Book) : ?>
 
-
-
-
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-info">Liste des Mes livres</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
                                             <tr>
-                                                <th>isbn</th>
-                                                <th>titre</th>
-                                                <th>Année d'édition</th>
-                                                <th>Langue</th>
-                                                <th>Résumé</th>
-                                                <th>Edit</th>
+                                                <td><?= $Book->isbn ?></td>
+                                                <td><?= $Book->title ?></td>
+                                                <td><?= $Book->edition_year ?></td>
+                                                <td><?= $Book->language ?></td>
+                                                <td> Résumé:
+                                                    <a class="Name" data-bs-target="#modal<?php echo $key; ?>" data-bs-toggle="modal">
+                                                        <?php echo $Book->title; ?>
+                                                    </a>
+                                                </td>
+
+                                                <td>
+                                                    <a href="<?= base_url('dashboardUser/editBook/' . $Book->isbn) ?>" class="btn btn-success btn-sm">Edit</a>
+
+                                                    <form action="<?= base_url('dashboardUser/deleteBook/' . $Book->isbn) ?>" method="POST">
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-x">Delete</i></button>
+                                                    </form>
+                                                </td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
+                            </div>
+                            <div class="modal" tabindex="-1" id="modal<?php echo $key; ?>">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title"><?php echo $Book->title; ?></h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p><?php echo $Book->resume_book; ?></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
-                                            <?php foreach ($myLibrabry as $key => $Book) : ?>
-
-                                                <tr>
-                                                    <td><?= $Book->isbn ?></td>
-                                                    <td><?= $Book->title ?></td>
-                                                    <td><?= $Book->edition_year ?></td>
-                                                    <td><?= $Book->language ?></td>
-                                                    <td> Résumé:
-                                                        <a class="Name" data-bs-target="#modal<?php echo $key; ?>" data-bs-toggle="modal">
-                                                            <?php echo $Book->title; ?>
-                                                        </a>
-                                                    </td>
-
-                                                    <td>
-                                                        <a href="<?= base_url('dashboardUser/editBook/' . $Book->isbn) ?>" class="btn btn-success btn-sm">Edit</a>
-
-                                                        <form action="<?= base_url('dashboardUser/deleteBook/' . $Book->isbn) ?>" method="POST">
-                                                            <input type="hidden" name="_method" value="DELETE">
-                                                            <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-x">Delete</i></button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                </div>
-                                <div class="modal" tabindex="-1" id="modal<?php echo $key; ?>">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title"><?php echo $Book->title; ?></h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p><?php echo $Book->resume_book; ?></p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            <?php endforeach; ?>
-
-                            </tbody>
-                            </table>
                             </div>
+                        <?php endforeach; ?>
+
+                        </tbody>
+                        </table>
                         </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -243,6 +229,23 @@
 
 
 
+    <script>
+        function loadAjax() {
+            var k = $('#it').val();
+            $.post('<?php echo base_url() . '/dashboardUser/searchBook/' ?>' + k, function(data) {
+                $('#results').html(data);
+            });
+        }
+    </script>
+
+    <script>
+
+    </script>
+
+
+
+
+
     <!-- Bootstrap core JavaScript-->
     <script src="assets/vendor/jquery/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -264,11 +267,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
 
     <!-- datatable css -->
-
     <script src="assets/js/demo/datatables-demo.js"></script>
     <script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 </body>
 

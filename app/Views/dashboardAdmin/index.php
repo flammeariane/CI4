@@ -104,7 +104,7 @@
                                             <th>Nom</th>
                                             <th>Prénom</th>
                                             <th>email</th>
-                                            <th>password</th>
+
                                             <th>Date creation</th>
                                             <th>statut</th>
                                             <th>admin</th>
@@ -117,9 +117,7 @@
                                                 <td><?= $user->firstname ?></td>
                                                 <td><?= $user->lastname ?></td>
                                                 <td><?= $user->email ?></td>
-                                                <td> Password: <input type="password" id="input<?php echo $key; ?>" value="<?= $user->password ?>">
-                                                    <input type="checkbox" onclick="myFunction()"> Voir le mot de passe
-                                                </td>
+
                                                 <td><?= $user->creation_date ?></td>
                                                 <td><?= $user->status ?></td>
                                                 <td><?= $user->admin ?></td>
@@ -203,20 +201,6 @@
             </div>
         </div>
     </div>
-
-
-    <!-- script afficahe en clair du mot de passe -->
-    <script>
-        function myFunction() {
-            var x = document.getElementById("input<?php echo $key; ?>");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-    </script>
-
 
 
     <!-- Bootstrap core JavaScript-->
