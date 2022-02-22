@@ -7,7 +7,7 @@
 
     <title>création compte</title>
     <!-- check pourquoi le php iclude ne fonctionne pas -->
-    <link rel="stylesheet" href="CI4../../../assets/css/bootstrap.min.css">
+    <?php include 'assets/css.php'; ?>
 </head>
 
 <body class=" bg-gradient-primary">

@@ -9,7 +9,13 @@ use App\Models\LibraryModel;
 use CodeIgniter\HTTP\Request;
 
 class DashboardUserController extends BaseController
+
 {
+    public function __construct()
+    {
+        helper(['url', 'form']);
+    }
+
     public function index()
     {
         $db = db_connect();
@@ -29,9 +35,16 @@ class DashboardUserController extends BaseController
         return view('dashboardUser/index', $data);
     }
 
+
     public function addBook()
     {
+        $db = db_connect();
         $book = new BooksModel();
+        $library = new LibraryModel();
+        $usersModel = new UsersModel();
+        $QueryModel = new QueryModel($db);
+        $loggedUserId = session()->get('loggedUser');
+
         $data = [
             'isbn' => $this->request->getPost('isbn'),
             'title' => $this->request->getPost('title'),
@@ -39,7 +52,13 @@ class DashboardUserController extends BaseController
             'language' => $this->request->getPost('language'),
             'resume_book' => $this->request->getPost('resume_book'),
         ];
-        $book->update($data);
+        $book->insert($data);
+        $libdata = [
+            'isbn' => $this->request->getPost('isbn'),
+            'id_users' => $loggedUserId
+        ];
+        $library->insert($libdata);
+
         return redirect()->to(base_url('dashboardUser'))->with('status', 'votre livre à été ajouté avec succes');
     }
 
@@ -83,22 +102,10 @@ class DashboardUserController extends BaseController
         ];
         return $data2;
     }
-    function searchBook($k)
-    {
-        //$k = $_REQUEST['k'];
-        $book = new BooksModel();
-        $bt = $book->where('title like ', $k . '%')->findAll();
-        $data['bt'] = $bt;
-        return view('dashboardUser/bt', $data);
-    }
 
 
     function bookS()
     {
         return view('dashboardUser/book_search');
-    }
-
-    function process_data()
-    {
     }
 }

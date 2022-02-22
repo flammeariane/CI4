@@ -30,12 +30,12 @@
 
 
 
-                    <div>
+                    <!-- <div>
 
                         <a href="#" onclick="Set_Form(); return false;">Test</a>
                         <script type="text/javascript" src="jquery_3_1_1.js"></script>
                         <script type="text/javascript" src="ajax.js"></script>
-                    </div>
+                    </div> -->
 
                     <!-- Content Row -->
                     <div class="row">
@@ -107,10 +107,10 @@
 
 
                     <!-- search book  -->
-
+                    <!-- 
                     <input type="text" id="it" onkeyup="loadAjax()" />
 
-                    <div id="results"></div>
+                    <div id="results"></div> -->
 
 
 
@@ -118,7 +118,23 @@
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-info">Liste des Mes livres</h6>
+                            <div class="row">
+                                <div class="col-10">
+                                    <h4 class="m-0 font-weight-bold text-info">Liste des Mes livres</h4>
+                                </div>
+                                <div class="col-2 ">
+
+                                    <!-- Button trigger modal ajout livre -->
+
+                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addBookModal">
+                                        <i class="bi bi-align-middle"></i> Ajouter un livre
+                                    </button>
+
+                                </div>
+                            </div>
+
+
+
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -143,13 +159,18 @@
                                                 <td><?= $Book->edition_year ?></td>
                                                 <td><?= $Book->language ?></td>
                                                 <td> Résumé:
+                                                    <!-- Button trigger modal voir résumer livre-->
                                                     <a class="Name" data-bs-target="#modal<?php echo $key; ?>" data-bs-toggle="modal">
                                                         <?php echo $Book->title; ?>
                                                     </a>
                                                 </td>
 
                                                 <td>
-                                                    <a href="<?= base_url('dashboardUser/editBook/' . $Book->isbn) ?>" class="btn btn-success btn-sm">Edit</a>
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">favoris</label>
+                                                    </div>
+                                                    <a href="<?= base_url('dashboardUser/editBook/' . $Book->isbn) ?>" class="btn btn-success btn-sm">Edit</a>;
 
                                                     <form action="<?= base_url('dashboardUser/deleteBook/' . $Book->isbn) ?>" method="POST">
                                                         <input type="hidden" name="_method" value="DELETE">
@@ -175,6 +196,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         <?php endforeach; ?>
 
                         </tbody>
@@ -183,6 +205,58 @@
                     </div>
 
                 </div>
+            </div>
+        </div>
+
+        <!-- Modal ajout livre -->
+        <div class="modal fade" id="addBookModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="<?= base_url('dashboardUser/addBook/') ?>" method="POST">
+
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>isbn</label>
+                                    <input type="text" name="isbn" class="form-control form-control-user" placeholder="titre" value="<?= set_value('isbn'); ?>">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>titre</label>
+                                    <input type="text" name="title" class="form-control form-control-user" placeholder="titre" value="<?= set_value('title'); ?>">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>Année d"édition</label>
+                                    <input type="text" name="edition_year" class="form-control form-control-user" placeholder="année d'édition" value="<?= set_value('edition_year'); ?>">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>Langue</label>
+                                    <input type="text" name="language" class="form-control form-control-user" placeholder="langue" value="<?= set_value('language'); ?>">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>Langue</label>
+                                    <input type="text" name="resume_book" class="form-control form-control-user" placeholder="résumé du livre" value="<?= set_value('resume_book'); ?>">
+                                </div>
+                            </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary px-4"> Ajouté </button>
+                    </div>
+                </div>
+                </form>
             </div>
         </div>
 

@@ -8,6 +8,7 @@
     <title>login</title>
 
     <?php include 'assets/css.php'; ?>
+    <link rel="stylesheet" href="CI4../../../assets/css/bootstrap.min.css">
 
 </head>
 

@@ -8,6 +8,6 @@ class LibraryModel extends Model
 {
     protected $table = 'library';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['id_user', 'isbn', 'buy_date', 'add_date', 'favorite', 'whish'];
+    protected $allowedFields = ['id_users', 'isbn', 'buy_date', 'add_date', 'favorite', 'whish'];
     protected $returnType    = \App\Entities\LibraryEntity::class;
 }

@@ -23,7 +23,6 @@ class DashboardAdminController extends BaseController
         $isAdmin = session()->get('isAdmin');
 
         $data = [
-            'title' => 'DashboardAdmin',
             'userInfo' => $userInfo,
             'listUsers' => $usersModel->findAll(),
             'listBook' => $listBook->findAll(),
@@ -56,7 +55,6 @@ class DashboardAdminController extends BaseController
         if ($file != '') {
             $name = $file->getRandomName();
             $file->move('./assets/img/', $name);
-
 
 
             $data = [
@@ -120,14 +118,12 @@ class DashboardAdminController extends BaseController
         echo base_url();
 
         $data = [
-            'title' => 'DashboardAdmin',
             'userInfo' => $userInfo,
             'listUsers' => $usersModel->findAll(),
             'listBook' => $listBook->findAll(),
             'isAdmin' => $isAdmin,
 
         ];
-        //  var_dump($data['listUsers']);
         return view('dashboardAdmin/viewUserBook', $data);
     }
 
