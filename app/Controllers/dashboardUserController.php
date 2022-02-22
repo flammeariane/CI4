@@ -22,6 +22,7 @@ class DashboardUserController extends BaseController
         $usersModel = new UsersModel();
         $bookModel = new BooksModel();
         $QueryModel = new QueryModel($db);
+        $libMod = new LibraryModel();
 
         $loggedUserId = session()->get('loggedUser');
         $userInfo = $usersModel->find($loggedUserId);
@@ -29,7 +30,8 @@ class DashboardUserController extends BaseController
         $data = [
             'userInfo' => $userInfo,
             'listBooks' => $bookModel->findAll(),
-            'myLibrabry' => $QueryModel->getMyLibrary($loggedUserId)
+            'myLibrabry' => $QueryModel->getMyLibrary($loggedUserId),
+            'lib' => $libMod->findAll()
         ];
 
         return view('dashboardUser/index', $data);
@@ -55,7 +57,8 @@ class DashboardUserController extends BaseController
         $book->insert($data);
         $libdata = [
             'isbn' => $this->request->getPost('isbn'),
-            'id_users' => $loggedUserId
+            'id_users' => $loggedUserId,
+            'favorite' => $this->request->getPost('favorite'),
         ];
         $library->insert($libdata);
 

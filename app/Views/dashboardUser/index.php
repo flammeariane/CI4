@@ -147,6 +147,7 @@
                                             <th>Langue</th>
                                             <th>Résumé</th>
                                             <th>Edit</th>
+                                            <th>Favoris</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -166,17 +167,18 @@
                                                 </td>
 
                                                 <td>
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                                        <label class="form-check-label" for="flexSwitchCheckDefault">favoris</label>
-                                                    </div>
-                                                    <a href="<?= base_url('dashboardUser/editBook/' . $Book->isbn) ?>" class="btn btn-success btn-sm">Edit</a>;
+                                                    <a href="<?= base_url('dashboardUser/editBook/' . $Book->isbn) ?>" class="btn btn-success btn-sm">Edit</a>
 
                                                     <form action="<?= base_url('dashboardUser/deleteBook/' . $Book->isbn) ?>" method="POST">
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-x">Delete</i></button>
                                                     </form>
                                                 </td>
+                                                <td>
+                                                    <?php if ($Book->favorite == 1) : ?>
+                                                        <p class="text-center"><button class="btn btn-warning"><i class="bi bi-star-fill"></i></button> </p>
+                                                </td>
+                                            <?php endif; ?>
                                             </tr>
                             </div>
                             <div class="modal" tabindex="-1" id="modal<?php echo $key; ?>">
@@ -251,6 +253,16 @@
                                 </div>
                             </div>
 
+
+
+                            <div class="col-md-6">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" name="favorite" value="1">
+                                </div>
+                            </div>
+
+
+
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary px-4"> Ajouté </button>
@@ -303,6 +315,7 @@
 
 
 
+
     <script>
         function loadAjax() {
             var k = $('#it').val();
@@ -312,9 +325,8 @@
         }
     </script>
 
-    <script>
 
-    </script>
+
 
 
 
