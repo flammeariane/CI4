@@ -24,6 +24,9 @@
                     </div>
                     <div class="card-body">
                         <form action="<?= base_url('dashboardUser/updateBook/' . $book->isbn) ?>" method="POST">
+                            <div class="col-4">
+                                <img src="<?php echo base_url('/assets/img/cover' . $book->cover_url) ?>" class=" img-fluid img-thumbnail border border-info rounded" />
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
@@ -49,14 +52,18 @@
                                         <input type="text" name="language" value="<?= $book->language ?>" class="form-control" placeholder="Entrez votre mot de passe">
                                     </div>
                                 </div>
+                                <div class="col-6">
+                                    <label for="cover_url">Upload Image</label>
+                                    <input name="cover_url" id="cover_url" class="form-control" placeholder="Photo" type="file" enctype="multipart/form-data">
+                                </div>
 
                                 <div class="col-md-12">
                                     <div class="form-group mb-3">
                                         <button type="submit" class="btn btn-primary px-4"> Update </button>
                                     </div>
-
-
                                 </div>
+
+
                             </div>
                         </form>
                     </div>

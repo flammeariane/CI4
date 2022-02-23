@@ -46,9 +46,9 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Mes livres :</div>
+                                                Livre sur la plateforme :</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <?php echo sizeof($myLibrabry) ?>
+                                                <?php echo sizeof($listBooks) ?>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -64,7 +64,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                mes livre favoris</div>
+                                                mes livres</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php echo sizeof($myLibrabry) ?>
                                             </div>
@@ -169,7 +169,7 @@
                                                 <td>
                                                     <a href="<?= base_url('dashboardUser/editBook/' . $Book->isbn) ?>" class="btn btn-success btn-sm">Edit</a>
 
-                                                    <form action="<?= base_url('dashboardUser/deleteBook/' . $Book->isbn) ?>" method="POST">
+                                                    <form action="<?= base_url('dashboardUser/deleteBookFromLib/' . $Book->id) ?>" method="POST">
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-x">Delete</i></button>
                                                     </form>
@@ -261,7 +261,10 @@
                                 </div>
                             </div>
 
-
+                            <div class="col-6">
+                                <label for="cover_url">Upload Image</label>
+                                <input name="cover_url" id="cover_url" class="form-control" placeholder="Photo" type="file" enctype="multipart/form-data">
+                            </div>
 
                     </div>
                     <div class="modal-footer">

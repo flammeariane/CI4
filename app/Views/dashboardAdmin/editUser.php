@@ -105,12 +105,7 @@
                             <div class="col-6">
                                 <label for="userProfileImage">Upload Image</label>
                                 <input name="userProfileImage" id="userProfileImage" class="form-control" placeholder="Photo" type="file" enctype="multipart/form-data">
-
                             </div>
-
-
-
-
 
                         </div>
 
@@ -123,14 +118,11 @@
                         </div>
                     </div>
                     </form>
-
-
                 </div>
             </div>
         </div>
     </div>
     </div>
-
 
     <?php include 'assets/js.php'; ?>
 

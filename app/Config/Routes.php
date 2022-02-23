@@ -47,6 +47,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->get('/dashboardUser/editBook/(:num)', 'dashboardUserController::editBook/$1');
     $routes->post('/dashboardUser/updateBook/(:num)', 'dashboardUserController::updateBook/$1');
     $routes->delete('/dashboardUser/deleteBook/(:num)', 'dashboardUserController::deleteBook/$1');
+    $routes->delete('/dashboardUser/deleteBookFromLib/(:num)', 'dashboardUserController::deleteBookFromLib/$1');
 });
 
 $routes->group('', ['filter' => 'AlreadyLoggedFilter'], function ($routes) {

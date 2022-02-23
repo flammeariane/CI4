@@ -47,13 +47,29 @@ class DashboardUserController extends BaseController
         $QueryModel = new QueryModel($db);
         $loggedUserId = session()->get('loggedUser');
 
-        $data = [
-            'isbn' => $this->request->getPost('isbn'),
-            'title' => $this->request->getPost('title'),
-            'edition_year' => $this->request->getPost('edition_year'),
-            'language' => $this->request->getPost('language'),
-            'resume_book' => $this->request->getPost('resume_book'),
-        ];
+        $file = $this->request->getFile('cover_url');
+        if ($file != '') {
+            $name = $file->getRandomName();
+            $file->move('./assets/img/cover', $name);
+
+            $data = [
+                'isbn' => $this->request->getPost('isbn'),
+                'title' => $this->request->getPost('title'),
+                'edition_year' => $this->request->getPost('edition_year'),
+                'language' => $this->request->getPost('language'),
+                'resume_book' => $this->request->getPost('resume_book'),
+                'cover_url' => $name,
+            ];
+        } else {
+            $data = [
+                'isbn' => $this->request->getPost('isbn'),
+                'title' => $this->request->getPost('title'),
+                'edition_year' => $this->request->getPost('edition_year'),
+                'language' => $this->request->getPost('language'),
+                'resume_book' => $this->request->getPost('resume_book'),
+
+            ];
+        }
         $book->insert($data);
         $libdata = [
             'isbn' => $this->request->getPost('isbn'),
@@ -76,23 +92,36 @@ class DashboardUserController extends BaseController
     {
         $book = new BooksModel();
         $book->find($isbn);
-        $data = [
-            'isbn' => $this->request->getPost('isbn'),
-            'title' => $this->request->getPost('title'),
-            'edition_year' => $this->request->getPost('edition_year'),
-            'language' => $this->request->getPost('language'),
-            'resume_book' => $this->request->getPost('resume_book'),
-
-        ];
+        $file = $this->request->getFile('cover_url');
+        if ($file != '') {
+            $name = $file->getRandomName();
+            $file->move('./assets/img/', $name);
+            $data = [
+                'isbn' => $this->request->getPost('isbn'),
+                'title' => $this->request->getPost('title'),
+                'edition_year' => $this->request->getPost('edition_year'),
+                'language' => $this->request->getPost('language'),
+                'resume_book' => $this->request->getPost('resume_book'),
+                'cover_url' => 'test',
+            ];
+        } else {
+            $data = [
+                'isbn' => $this->request->getPost('isbn'),
+                'title' => $this->request->getPost('title'),
+                'edition_year' => $this->request->getPost('edition_year'),
+                'language' => $this->request->getPost('language'),
+                'resume_book' => $this->request->getPost('resume_book'),
+            ];
+        }
         $book->update($isbn, $data);
         return redirect()->to(base_url('dashboardUser'))->with('status', 'mise a jour éffectuée avec succes');
     }
 
-    public function deleteBook($isbn)
+    public function deleteBookFromLib($id)
     {
-        $book = new BooksModel();
-        $book->delete($isbn);
-        return redirect()->to(base_url('dashboardUser'))->with('status', 'livre supprimé avec success');
+        $library = new LibraryModel();
+        $library->delete($id);
+        return redirect()->to(base_url('dashboardUser'))->with('status', 'livre supprimé avec success de votre bibliothéque');
     }
 
 

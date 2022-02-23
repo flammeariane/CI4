@@ -19,9 +19,9 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4 myclass">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard Admin</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i class="bi bi-file-pdf"></i> Generate Report</a>
+                        <a href="" id="generate" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i class="bi bi-file-pdf"></i> Generate Report</a>
                     </div>
 
                     <?php if ((session()->getFlashdata('status'))) : ?>
@@ -31,7 +31,7 @@
                     <!-- Content Row -->
                     <div class="row">
 
-                        <div class="col-xl-3 col-md-6 mb-4 offset-1">
+                        <div class="col-xl-3 col-md-6 mb-4 offset-1 change-color">
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -201,6 +201,18 @@
             </div>
         </div>
     </div>
+
+
+    <script>
+        $(function() {
+                    $("tr td").mouseover(function() {
+                        $("tr td").css("opacity", "0.3");
+                        $(this).css("opacity", "1");
+                    })
+
+                }
+                /*Couleur sur mot de passe quand on passe dessus*/
+    </script>
 
 
     <!-- Bootstrap core JavaScript-->

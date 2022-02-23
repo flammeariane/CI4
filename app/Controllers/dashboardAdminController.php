@@ -55,8 +55,6 @@ class DashboardAdminController extends BaseController
         if ($file != '') {
             $name = $file->getRandomName();
             $file->move('./assets/img/', $name);
-
-
             $data = [
                 'firstname' => $this->request->getPost('firstname'),
                 'lastname' => $this->request->getPost('lastname'),
